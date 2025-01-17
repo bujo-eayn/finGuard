@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- adding permissions on below line -->
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -22,6 +26,7 @@
         <activity android:name=".LoginActivity" android:exported="true" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".ProfileActivity" />
+        <activity android:name=".MessageDetailActivity" />
         <!-- Declare your launcher activity -->
         <activity
             android:name=".SplashActivity"
@@ -33,13 +38,16 @@
         </activity>
 
         <!-- MainActivity -->
-        <activity android:name=".MainActivity" android:exported="true" />
+<!--        <activity android:name=".MainActivity" android:exported="true" />-->
 
-        <receiver android:name=".SmsReceiver" android:exported="true">
+        <receiver android:name=".SmsReceiver" android:exported="true"
+            android:permission="android.permission.BROADCAST_SMS">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".DumpActivity" />
 
     </application>
 </manifest>

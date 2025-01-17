@@ -36,6 +36,7 @@ class RegisterActivity : AppCompatActivity() {
 
         if (savedPhone != null) {
             // User is already registered, proceed to the Home screen or Profile
+            Toast.makeText(this, "The User is already Logged in", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
             finish()
@@ -57,6 +58,7 @@ class RegisterActivity : AppCompatActivity() {
                 editor.putString("fullName", name)
                 editor.putString("phoneNumber", phone)
                 editor.putString("password", pass)
+                editor.putBoolean("isLoggedIn", true) // Add this line after storing user data
                 editor.apply()
 
                 Toast.makeText(this, "Registration Successful", Toast.LENGTH_SHORT).show()

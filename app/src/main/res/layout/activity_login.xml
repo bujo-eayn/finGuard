@@ -7,6 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <!-- Title for the Login Form -->
+    <TextView
+        android:id="@+id/tvLoginTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@id/etUsername" />
+
+    <!-- Username Input -->
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="0dp"
@@ -15,9 +31,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        android:layout_margin="16dp" />
+        app:layout_constraintBottom_toTopOf="@id/etPassword"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp" />
 
+    <!-- Password Input -->
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="0dp"
@@ -27,8 +46,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etUsername"
-        android:layout_margin="16dp" />
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp" />
 
+    <!-- Login Button -->
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="0dp"
@@ -37,8 +58,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etPassword"
-        android:layout_margin="16dp" />
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp" />
 
+    <!-- Biometric Login Button -->
     <Button
         android:id="@+id/btnBiometricLogin"
         android:layout_width="0dp"
@@ -47,5 +70,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnLogin"
-        android:layout_margin="16dp" />
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Register Button -->
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBiometricLogin"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

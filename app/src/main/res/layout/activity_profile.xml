@@ -3,26 +3,100 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="16dp">
 
+    <!-- Title -->
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Name Field -->
+    <EditText
+        android:id="@+id/etName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Set Message Expiry Duration"
-        android:textSize="16sp"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:focusable="false"
         android:layout_marginBottom="8dp" />
 
+    <!-- Phone Field -->
+    <EditText
+        android:id="@+id/etPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone Number"
+        android:inputType="phone"
+        android:focusable="false"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Fingerprint Status Field -->
+    <EditText
+        android:id="@+id/etFingerprint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Fingerprint Status"
+        android:focusable="false"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Expiry Duration Field (Editable) -->
     <EditText
         android:id="@+id/etExpiryDuration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Expiry Duration (Days)"
-        android:inputType="number" />
+        android:inputType="number"
+        android:layout_marginBottom="16dp" />
 
+    <!-- Save Button -->
     <Button
-        android:id="@+id/btnSetFingerprint"
+        android:id="@+id/btnSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Set Fingerprint"
-        android:layout_marginTop="16dp" />
+        android:text="Save"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Set Fingerprint Button (25% width) -->
+    <Button
+        android:id="@+id/btnSetFingerprint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25"
+        android:layout_marginBottom="16dp"
+        android:text="Add Fingerprint"
+        android:layout_gravity="center" />
+
+    <!-- Inline Buttons: Logout and Delete -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@android:color/holo_orange_dark"
+            android:text="Logout"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:text="Delete"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
 </LinearLayout>

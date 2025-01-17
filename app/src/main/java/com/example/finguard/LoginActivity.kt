@@ -15,6 +15,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var password: EditText
     private lateinit var loginButton: Button
     private lateinit var biometricLoginButton: Button
+    private lateinit var registerButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,21 +24,35 @@ class LoginActivity : AppCompatActivity() {
         password = findViewById(R.id.etPassword)
         loginButton = findViewById(R.id.btnLogin)
         biometricLoginButton = findViewById(R.id.btnBiometricLogin)
+        registerButton = findViewById(R.id.btnRegister)
 
+        // Normal login using password
         loginButton.setOnClickListener {
             val enteredPassword = password.text.toString()
             val sharedPreferences = getSharedPreferences("FinGuardPrefs", MODE_PRIVATE)
             val savedPassword = sharedPreferences.getString("password", "")
 
             if (enteredPassword == savedPassword) {
+                // Mark user as logged in
+                val editor = sharedPreferences.edit()
+                editor.putBoolean("isLoggedIn", true) // Update login status
+                editor.apply()
+
                 navigateToHome()
             } else {
                 Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT).show()
             }
         }
 
+        // Biometric login
         biometricLoginButton.setOnClickListener {
             authenticateWithBiometrics()
+        }
+
+        // Navigate to Register Activity
+        registerButton.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -51,6 +66,13 @@ class LoginActivity : AppCompatActivity() {
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
                     Toast.makeText(applicationContext, "Biometric Authentication Successful", Toast.LENGTH_SHORT).show()
+
+                    // Mark user as logged in
+                    val sharedPreferences = getSharedPreferences("FinGuardPrefs", MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putBoolean("isLoggedIn", true) // Update login status
+                    editor.apply()
+
                     navigateToHome()
                 }
 

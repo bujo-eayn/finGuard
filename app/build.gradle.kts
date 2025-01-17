@@ -71,5 +71,8 @@ dependencies {
     implementation(libs.androidx.security.crypto)
 
     // SMS Receiver (for SMS interception)
-    implementation(libs.play.services.auth.api.phone)
+    implementation(libs.play.services.auth.api.phone )
+
+    implementation (libs.material.v140)
+
 }

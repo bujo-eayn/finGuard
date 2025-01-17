@@ -3,29 +3,30 @@ package com.example.finguard
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import com.google.android.material.snackbar.Snackbar
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.finguard.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
-
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivitySplashBinding
-    private val SPLASH_TIME_OUT: Long = 3000 // 3 seconds
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        Handler().postDelayed({
-            // Start your main activity
-            startActivity(Intent(this, MainActivity::class.java))
-            // Close this activity
+        Handler(Looper.getMainLooper()).postDelayed({
+            // Check registration and login status
+            val sharedPreferences = getSharedPreferences("FinGuardPrefs", MODE_PRIVATE)
+            val isRegistered = sharedPreferences.contains("fullName") && sharedPreferences.contains("password")
+            val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+
+            val nextActivity = when {
+                !isRegistered -> RegisterActivity::class.java
+                isLoggedIn -> HomeActivity::class.java
+                else -> LoginActivity::class.java
+            }
+
+            // Navigate to the next activity
+            startActivity(Intent(this, nextActivity))
             finish()
-        }, SPLASH_TIME_OUT)
+        }, 2000) // 2-second delay for splash screen
     }
 }
