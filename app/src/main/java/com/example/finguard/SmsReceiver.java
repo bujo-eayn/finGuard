@@ -42,7 +42,7 @@ public class SmsReceiver extends BroadcastReceiver {
             }
         }
     }
-
+//comment
     private String obfuscateSmsContent(String message) {
         // Obfuscate phone numbers
         message = message.replaceAll("\\b(\\d{4})(\\d{4})\\b", "$1****");
